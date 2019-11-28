@@ -1,71 +1,104 @@
 <!DOCTYPE html>
+<meta charset="utf-8"/>
 <?php
-		$currentpage="List Parts";
+		$currentpage="List Drinks";
 ?>
 <html>
 	<head>
-		<title>List Parts</title>
+		<title>List Drinks</title>
 		<link rel="stylesheet" href="index.css">
 	</head>
 <body>
 
 <?php
-// change the value of $dbuser and $dbpass to your username and password
-	include 'connectvars.php'; 
-	include 'header.php';
-	
-// Connect to the database
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	if (!$conn) {
-		die('Could not connect: ' . mysql_error());
-	}	
-
-// query to select all information from parts table
-//  ADD the SQL query *******
-	$query = "SELECT Flavor, Temperature, Price, FROM Drink";
-	
-// Get results from query
-	$result = mysqli_query($conn, $query);
-	if (!$result) {
-		die("Query to show fields from table failed");
+	if(isset($_POST['submit'])){
+		$data_missing = array();
+		
+		if(empty($_POST['Flavor'])){
+	       	// Adds name to array
+	        $data_missing[] = 'Flavor';
+	    } 
+		else {
+	        // Trim white space from the name and store the name
+	        $Flavor = trim($_POST['Flavor']);
+	    }
+		
+		if(empty($_POST['Temperature'])){
+	       	// Adds name to array
+	        $data_missing[] = 'Temperature';
+	    } 
+		else {
+	        // Trim white space from the name and store the name
+	        $Temperature = trim($_POST['Temperature']);
+	    }
+		
+		if(empty($_POST['Price'])){
+	       	// Adds name to array
+	        $data_missing[] = 'Price';
+	    } 
+		else {
+	        // Trim white space from the name and store the name
+	        $Price = trim($_POST['Price']);
+	    }
+		
+		if(empty($data_missing)){
+			require_once('connectvars.php');
+			
+			$query = "INSERT INTO `a.Drink` (DrinkID, Temperature, Flavor,
+	        Price, ) VALUES (NULL, ?, ?, ?)";
+			
+	        $stmt = mysqli_prepare($dbc, $query);
+			
+	        d Doubles
+	        s Everything Else
+	         
+	        mysqli_stmt_bind_param($stmt, "ssd", $Temperature,
+									$Flavor, $Price);
+									
+	        mysqli_stmt_execute($stmt);
+			
+	        $affected_rows = mysqli_stmt_affected_rows($stmt);
+			
+			if($affected_rows == 1){ 
+	            echo 'Drink Entered';
+	            mysqli_stmt_close($stmt);
+	            mysqli_close($dbc);
+	        }
+			else {
+	            echo 'Error Occurred<br />';
+	            echo mysqli_error();
+	            mysqli_stmt_close($stmt);
+	            mysqli_close($dbc);
+	        }
+		}
+		else {
+			echo 'You need to enter the following data<br />';
+	        foreach($data_missing as $missing){
+	            echo "$missing<br />";
+	        }
+		}
 	}
-	// If there are parts in the database construct an HTML table
-	// to display the results
-	
-	if(mysqli_num_rows($result) > 0){
-        echo "<h1>Drink</h1>";  
-		echo "<table id='t01' border='1'>";
-		// Create the table header
-        echo "<thead>";
-			echo "<tr>";
-			echo "<th>ID</th>";
-			echo "<th>Name</th>";
-			echo "<th>Color</th>";
-			echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-		
-		// Extract rows from the results returned from the database
-        while($row = mysqli_fetch_array($result)){
-        //  ADD code to display the parts  *****
-		//  This is similar to how suppliers were displayed  ***
-			echo "<tr>";
-            echo "<td>" . $row['Flavor'] . "</td>";
-			echo "<td>" . $row['Temperature'] . "</td>";
-            echo "<td>" . $row['Price'] . "</td>";
-            echo "</tr>";
-		
-        }
-        echo "</tbody>";                            
-        echo "</table>";
-		// Free result set
-        mysqli_free_result($result);
-    } else{
-		echo "<p class='lead'><em>No records were found.</em></p>";
-    } 
-	// Close the database connection
-	mysqli_close($conn);
 ?>
+
+<form method="post" id="addForm">
+	<b>Add a New Drink</b>
+	<p>Flavor:
+	<input type="text" name="Flavor" size="30" value="" />
+	</p>
+		
+	<p>Temperature:
+	<input type="text" name="Temperature" size="30" value="" />
+	</p>
+	
+	<p>Price:
+	<input type="text" name="Price" size="30" value="" />
+	</p>
+	
+	<p>
+		<input type = "submit" name="submit" value = "Send" />
+	</p>
+</form>
+
 </body>
 
 </html>

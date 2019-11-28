@@ -1,34 +1,33 @@
 <!DOCTYPE html>
+<meta charset="utf-8"/>
 <!-- Add Part Info to Table Part -->
 <?php
-		$currentpage="Add Drink";
+		$currentpage="Add Drinks";
 ?>
 <html>
 	<head>
-		<title>Add Drink</title>
+		<title>Add Drinks</title>
 		<link rel="stylesheet" href="index.css">
 		<script type = "text/javascript"  src = "verifyInput.js" > </script> 
 	</head>
 <body>
-
-
-
-    <h2> <?php echo $msg; ?> </h2>
-
 	<form method="post" id="addForm">
-		<legend>Drink Info:</legend>
+		<b>Add a New Drink</b>
+		<p>Flavor:
+		<input type="text" name="Flavor" size="30" value="" />
+		</p>
+	        
+		<p>Temperature:
+		<input type="text" name="Temperature" size="30" value="" />
+		</p>
+		
+		<p>Price:
+		<input type="text" name="Price" size="30" value="" />
+		</p>
+		
 		<p>
-			<label for="Name">Drink Name:</label>
-			<input type="text" class="required" name="pname" id="pname">
-        </p>
-        
-		<p>
-			<label for="Color">Color:</label>
-			<input type="text" class="required" name="color" id="color">
-        <p>
-		<input type = "submit"  value = "Submit" />
-        <input type = "reset"  value = "Clear Form" />
-    </p>
+			<input type = "submit" name="submit" value = "Send" />
+		</p>
 	</form>
 </body>
 </html>
