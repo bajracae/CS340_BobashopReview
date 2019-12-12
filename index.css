@@ -28,6 +28,7 @@ header > ul {
 } */
 #home{
 	font-size: 26px;
+	transition:0.05s;
 }
 
 a.shops:visited,
