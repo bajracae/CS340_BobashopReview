@@ -24,7 +24,9 @@ $customer = $_GET['cust'];
 	}
 
 	// query to select all information from parts table
-	$query = "SELECT Shop.ShopID, Drink.Flavor, Rating.Comment, Rating.NumStars, Customers.Name
+
+		$query = "SELECT Shop.Name AS SName, Drink.Flavor, Rating.Comment, Rating.NumStars, Customers.Name
+
 			FROM `Rating`, `Customers`, `Drink`, `Shop`
 			WHERE Rating.CustomerID = Customers.CustomerID
 			AND Rating.DrinkID = Drink.DrinkID
@@ -53,23 +55,29 @@ $customer = $_GET['cust'];
 		echo "</thead>";
 		echo "<tbody>";
 
-		// Extract rows from the results returned from the database
-		mysqli_data_seek($result, 0);
-		while ($row = mysqli_fetch_array($result)) {
-			echo "<tr>";
-			echo "<td>" . $row['ShopID'] . "</td>";
-			echo "<td>" . $row['Flavor'] . "</td>";
-			echo "<td>" . $row['Comment'] . "</td>";
-			echo "<td>" . $row['NumStars'] . "</td>";
-			echo "</tr>";
-		}
-		echo "</tbody>";
-		echo "</table>";
-		// Free result set
-		mysqli_free_result($result);
-	} else {
-		echo "<p class='lead'><em>No records were found.</em></p>";
-	}
+			// Extract rows from the results returned from the database
+			mysqli_data_seek($result, 0);
+	        while($row = mysqli_fetch_array($result)){
+						echo "<tr>";
+						echo "<td>" . $row['SName'] . "</td>";
+						echo "<td>" . $row['Flavor'] . "</td>";
+						echo "<td>" . $row['Comment'] . "</td>";
+						echo "<td>" . $row['NumStars'] . "</td>";
+						echo "</tr>";
+	        }
+	        echo "</tbody>";
+	        echo "</table>";
+			// Free result set
+	        mysqli_free_result($result);
+	    } else{
+			echo "<p class='lead'><em>No records were found.</em></p>";
+	    }
+
+		// Close the database connection
+		mysqli_close($conn);
+		echo "<div style=\"text-align:center;\">";
+		echo "<input id=\"addButton\" type=\"Button\" value=\"Go Back to All Customers\" onclick=\"window.location='listCustomers?user=".$user."'\">";
+		echo"</div>";
 
 	// Close the database connection
 	mysqli_close($conn);

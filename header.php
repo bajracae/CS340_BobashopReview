@@ -8,8 +8,8 @@
 		// "Add Manager" => "addManager.php",
 		// "List Drinks" => "list_drinks.php",
     "Home" => "homepage.php",
-    "List Shops" => "listShops.php",
-		"List Customers" => "listCustomers.php");
+    "All Shops" => "listShops.php",
+		"All Customers" => "listCustomers.php");
 
 		// "List Managers" => "listManagers.php",
 		// "Add Ratings" => "addRating.php",
@@ -19,6 +19,7 @@
 <header>
 	<div>
     <div id = "main"><a href="homepage.php" id = "home">RATE MY BOBA </a></div>
+
     <div id="bardiv"><em>Welcome!</em>
     </div>
   </div>

@@ -29,6 +29,7 @@ header > ul {
 	align-items: center;
     justify-content: center;
     flex-direction:column;
+
 }
 
 a.shops:visited,
@@ -368,7 +369,6 @@ caption {
 }
 
 .center{
-	margin-left:auto; 
+	margin-left:auto;
     margin-right:auto;
 }
-
