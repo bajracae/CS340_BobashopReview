@@ -110,6 +110,7 @@ main {
 body{
 	margin: 0;
 	height: 100%;
+	background-color: #f4b0c6;
 }
 .mainbody{
 	padding: 8px;

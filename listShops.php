@@ -33,8 +33,8 @@ $currentpage = "List Shops";
 	}
 
 	if (mysqli_num_rows($result) > 0) {
-		echo "<h1 class='table'>Shops</h1>";
-		echo "<h3 class='table'>Click a shop to see their information</h3>";
+		echo "<h1 class='table'>SHOPS</h1>";
+		echo "<h3 class='table'>Click on a shop to see all of the drink ratings</h3>";
 		echo "<table class='center' id='t01' border='1'>";
 		echo "<thead>";
 		echo "<tr>";

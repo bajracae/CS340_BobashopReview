@@ -22,7 +22,7 @@ $listshop = $_GET['listShops'];
         <div>
             <div id="main"><a href="homepage.php" id="home">RATE MY BOBA </a></div>
             <!-- <div id="bardiv"><em></em></div> -->
-
+        </div>
     </header>
 
     <div class="mainbody">
