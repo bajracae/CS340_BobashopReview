@@ -75,8 +75,9 @@ $customer = $_GET['cust'];
 
 		// Close the database connection
 		mysqli_close($conn);
+		echo "<div style=\"text-align:center;\">";
 		echo "<input id=\"addButton\" type=\"Button\" value=\"Go Back to All Customers\" onclick=\"window.location='listCustomers?user=".$user."'\">";
-
+		echo"</div>";
 
 	// Close the database connection
 	mysqli_close($conn);
